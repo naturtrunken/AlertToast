@@ -137,12 +137,14 @@ public struct AlertToast: View{
                    titleColor: Color? = nil,
                    subTitleColor: Color? = nil,
                    titleFont: Font? = nil,
-                   subTitleFont: Font? = nil)
+                   subTitleFont: Font? = nil,
+                   additionalTopMargin: CGFloat? = nil
+        )
         
         ///Get background color
         var backgroundColor: Color? {
             switch self{
-            case .style(backgroundColor: let color, _, _, _, _):
+            case .style(backgroundColor: let color, _, _, _, _, _):
                 return color
             }
         }
@@ -150,7 +152,7 @@ public struct AlertToast: View{
         /// Get title color
         var titleColor: Color? {
             switch self{
-            case .style(_,let color, _,_,_):
+            case .style(_,let color, _,_,_, _):
                 return color
             }
         }
@@ -158,7 +160,7 @@ public struct AlertToast: View{
         /// Get subTitle color
         var subtitleColor: Color? {
             switch self{
-            case .style(_,_, let color, _,_):
+            case .style(_,_, let color, _,_, _):
                 return color
             }
         }
@@ -166,7 +168,7 @@ public struct AlertToast: View{
         /// Get title font
         var titleFont: Font? {
             switch self {
-            case .style(_, _, _, titleFont: let font, _):
+            case .style(_, _, _, titleFont: let font, _, _):
                 return font
             }
         }
@@ -174,8 +176,16 @@ public struct AlertToast: View{
         /// Get subTitle font
         var subTitleFont: Font? {
             switch self {
-            case .style(_, _, _, _, subTitleFont: let font):
+            case .style(_, _, _, _, subTitleFont: let font, _):
                 return font
+            }
+        }
+        
+        /// Get additional Top margin value
+        var additionalTopMargin: CGFloat? {
+            switch self {
+            case .style(_, _, _, _, _, additionalTopMargin: let margin):
+                return margin
             }
         }
     }
@@ -317,7 +327,7 @@ public struct AlertToast: View{
             }
             .fixedSize(horizontal: true, vertical: false)
             .padding(.horizontal, 24)
-            .padding(.vertical, 8)
+            .padding(.vertical, 8 + (style?.additionalTopMargin ?? 0.0))
             .frame(minHeight: 50)
             .alertBackground(style?.backgroundColor ?? nil)
             .clipShape(Capsule())
