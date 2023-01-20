@@ -12,7 +12,9 @@ struct FailureView: View {
         VStack {
             HStack {
                 Image(systemName: "x.circle")
-                Text("Bla")
+                    .font(.custom("Sohne-Dreiviertelfett", size: 42.0))
+                Text("Objekt konnte nicht hinzugefügt werden. Objekt konnte nicht hinzugefügt werden.")
+                    .font(.custom("Sohne-Dreiviertelfett", size: 24.0))
             }
             .foregroundColor(.white)
         }
@@ -23,7 +25,6 @@ struct FailureView: View {
         .clipShape(Capsule())
         .overlay(Capsule().stroke(Color.gray.opacity(0.2), lineWidth: 1))
         .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 6)
-        .font(.custom("Sohne-Dreiviertelfett", size: 24.0))
     }
 }
 
