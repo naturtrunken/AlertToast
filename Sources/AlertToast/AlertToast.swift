@@ -128,6 +128,9 @@ public struct AlertToast: View{
         
         ///Only text alert
         case regular
+        
+        // addo
+        case failure
     }
     
     /// Customize Alert Appearance
@@ -258,6 +261,8 @@ public struct AlertToast: View{
                         ActivityIndicator()
                     case .regular:
                         EmptyView()
+                    case .failure:
+                        EmptyView()
                     }
                     
                     Text(LocalizedStringKey(title ?? ""))
@@ -274,7 +279,7 @@ public struct AlertToast: View{
             .textColor(style?.titleColor ?? nil)
             .padding()
             .frame(maxWidth: 400, alignment: .leading)
-            .alertBackground(.blue)
+            .alertBackground(style?.backgroundColor ?? nil)
             .cornerRadius(10)
             .padding([.horizontal, .bottom])
         }
@@ -282,8 +287,15 @@ public struct AlertToast: View{
     
     ///HUD View
     public var hud: some View{
+        Group {
+            Text(title ?? "")
+        }
+        .frame(minHeight: 50)
+        .alertBackground(.red)
+        /*
         Group{
             HStack(spacing: 16){
+                
                 switch type{
                 case .complete(let color):
                     Image(systemName: "checkmark")
@@ -304,6 +316,8 @@ public struct AlertToast: View{
                 case .loading:
                     ActivityIndicator()
                 case .regular:
+                    EmptyView()
+                case .failure:
                     EmptyView()
                 }
                 
@@ -329,13 +343,14 @@ public struct AlertToast: View{
             .padding(.horizontal, 24)
             .padding(.vertical, 8 + (style?.additionalTopMargin ?? 0.0))
             .frame(minHeight: 50)
-            .alertBackground(.red)
+            .alertBackground(style?.backgroundColor ?? nil)
             .clipShape(Capsule())
-            .overlay(Capsule().stroke(Color.red.opacity(0.2), lineWidth: 1))
+            .overlay(Capsule().stroke(Color.gray.opacity(0.2), lineWidth: 1))
             .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 6)
             .compositingGroup()
         }
         .padding(.top)
+        */
     }
     
     ///Alert View
@@ -373,6 +388,8 @@ public struct AlertToast: View{
                 ActivityIndicator()
             case .regular:
                 EmptyView()
+            case .failure:
+                EmptyView()
             }
             
             VStack(spacing: type == .regular ? 8 : 2){
@@ -393,7 +410,7 @@ public struct AlertToast: View{
         }
         .padding()
         .withFrame(type != .regular && type != .loading)
-        .alertBackground(.red)
+        .alertBackground(style?.backgroundColor ?? nil)
         .cornerRadius(10)
     }
     
