@@ -724,7 +724,7 @@ public extension View{
     /// Choose the alert background
     /// - Parameter color: Some Color, if `nil` return `VisualEffectBlur`
     /// - Returns: some View
-    fileprivate func alertBackground(_ color: Color? = nil) -> some View{
+     func alertBackground(_ color: Color? = nil) -> some View{
         modifier(BackgroundModifier(color: color))
     }
     
