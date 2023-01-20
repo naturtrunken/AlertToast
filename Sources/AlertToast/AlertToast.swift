@@ -274,7 +274,7 @@ public struct AlertToast: View{
             .textColor(style?.titleColor ?? nil)
             .padding()
             .frame(maxWidth: 400, alignment: .leading)
-            .alertBackground(style?.backgroundColor ?? nil)
+            .alertBackground(.blue)
             .cornerRadius(10)
             .padding([.horizontal, .bottom])
         }
@@ -329,9 +329,9 @@ public struct AlertToast: View{
             .padding(.horizontal, 24)
             .padding(.vertical, 8 + (style?.additionalTopMargin ?? 0.0))
             .frame(minHeight: 50)
-            .alertBackground(style?.backgroundColor ?? nil)
+            .alertBackground(.red)
             .clipShape(Capsule())
-            .overlay(Capsule().stroke(Color.gray.opacity(0.2), lineWidth: 1))
+            .overlay(Capsule().stroke(Color.red.opacity(0.2), lineWidth: 1))
             .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 6)
             .compositingGroup()
         }
@@ -393,7 +393,7 @@ public struct AlertToast: View{
         }
         .padding()
         .withFrame(type != .regular && type != .loading)
-        .alertBackground(style?.backgroundColor ?? nil)
+        .alertBackground(.red)
         .cornerRadius(10)
     }
     
