@@ -287,12 +287,6 @@ public struct AlertToast: View{
     
     ///HUD View
     public var hud: some View{
-        Group {
-            Text(title ?? "")
-        }
-        .frame(minHeight: 50)
-        .alertBackground(.red)
-        /*
         Group{
             HStack(spacing: 16){
                 
@@ -350,11 +344,18 @@ public struct AlertToast: View{
             .compositingGroup()
         }
         .padding(.top)
-        */
     }
     
     ///Alert View
     public var alert: some View{
+        
+        
+        Group {
+            Text(title ?? "")
+        }
+        .frame(minHeight: 50)
+        .alertBackground(.red)
+        /*
         VStack{
             switch type{
             case .complete(let color):
@@ -412,6 +413,7 @@ public struct AlertToast: View{
         .withFrame(type != .regular && type != .loading)
         .alertBackground(style?.backgroundColor ?? nil)
         .cornerRadius(10)
+        */
     }
     
     ///Body init determine by `displayMode`
