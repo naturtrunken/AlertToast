@@ -350,11 +350,17 @@ public struct AlertToast: View{
     public var alert: some View{
         
         
-        Group {
-            Text(title ?? "")
+        VStack {
+            HStack {
+                Image(systemName: "x.circle")
+                Text(title ?? "")
+            }
         }
+        .padding()
         .frame(minHeight: 50)
         .alertBackground(.red)
+        .cornerRadius(10)
+
         /*
         VStack{
             switch type{
