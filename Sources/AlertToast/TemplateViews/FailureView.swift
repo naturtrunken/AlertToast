@@ -12,7 +12,7 @@ struct FailureView: View {
         VStack {
             HStack {
                 Image(systemName: "x.circle")
-                    .font(.custom("Sohne-Dreiviertelfett", size: 42.0))
+                    .font(.custom("Sohne-Dreiviertelfett", size: 38.0))
                 Text("Objekt konnte nicht hinzugefügt werden. Objekt konnte nicht hinzugefügt werden.")
                     .multilineTextAlignment(.leading)
                     .font(.custom("Sohne-Dreiviertelfett", size: 20.0))
@@ -24,8 +24,9 @@ struct FailureView: View {
         .frame(minHeight: 50)
         .fixedSize(horizontal: true, vertical: false)
         .alertBackground(Color(red: 1, green: 0.4, blue: 0.4))
-        .clipShape(Capsule())
-        .overlay(Capsule().stroke(Color.gray.opacity(0.2), lineWidth: 1))
+        .clipShape(Rectangle())
+        .overlay(Rectangle().stroke(Color.gray.opacity(0.2), lineWidth: 1))
+        .cornerRadius(35.0)
         .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 6)
     }
 }
