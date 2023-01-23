@@ -97,10 +97,7 @@ public struct AlertToast: View{
     
     /// Determine how the alert will be display
     public enum DisplayMode: Equatable{
-        
-        ///Present at the center of the screen
-        case centerAlert
-        
+    
         ///Drop from the top of the screen
         case topAlert
         
@@ -108,24 +105,12 @@ public struct AlertToast: View{
     
     /// Determine what the alert will display
     public enum AlertType: Equatable{
-        /*
-        ///Animated checkmark
-        case complete(_ color: Color)
-        
-        ///Animated xmark
-        case error(_ color: Color)
-        
-        ///System image from `SFSymbols`
-        case systemImage(_ name: String, _ color: Color)
-        
-        ///Image from Assets
-        case image(_ name: String, _ color: Color)
-        
-        ///Loading indicator (Circular)
-        case loading
-        */
-        ///Only text alert
+        ///White
+        case info
+
+        ///Red
         case error
+
     }
     
     /// Customize Alert Appearance
@@ -223,27 +208,13 @@ public struct AlertToast: View{
         self.title = title
     }
     
-
-    public var topAlertView: some View{
-        FailureView()
-        /*
-        switch AlertType {
-        case .error:
-            FailureView()
-        }*/
-    }
-    
-    public var centerAlertView: some View{
-        FailureView()
-    }
-    
     ///Body init determine by `displayMode`
     public var body: some View{
-        switch displayMode{
-        case .centerAlert:
-            centerAlertView
-        case .topAlert:
-            topAlertView
+        switch type {
+        case .info:
+            InfoView()
+        case .error:
+            FailureView()
         }
     }
 }
@@ -291,22 +262,6 @@ public struct AlertToastModifier: ViewModifier{
         if isPresenting{
             
             switch alert().displayMode{
-            case .centerAlert:
-                alert()
-                    .onTapGesture {
-                        onTap?()
-                        if tapToDismiss{
-                            withAnimation(Animation.spring()){
-                                self.workItem?.cancel()
-                                isPresenting = false
-                                self.workItem = nil
-                            }
-                        }
-                    }
-                    .onDisappear(perform: {
-                        completion?()
-                    })
-                    .transition(AnyTransition.scale(scale: 0.8).combined(with: .opacity))
             case .topAlert:
                 alert()
                     .overlay(
@@ -367,20 +322,6 @@ public struct AlertToastModifier: ViewModifier{
                                     .offset(y: offset)
                                     .animation(Animation.spring(), value: isPresenting))
                 )
-                .valueChanged(value: isPresenting, onChange: { (presented) in
-                    if presented{
-                        onAppearAction()
-                    }
-                })
-        case .centerAlert:
-            content
-                .overlay(ZStack{
-                    main()
-                        .offset(y: offsetY)
-                }
-                            .frame(maxWidth: screen.width, maxHeight: screen.height, alignment: .center)
-                            .edgesIgnoringSafeArea(.all)
-                            .animation(Animation.spring(), value: isPresenting))
                 .valueChanged(value: isPresenting, onChange: { (presented) in
                     if presented{
                         onAppearAction()
