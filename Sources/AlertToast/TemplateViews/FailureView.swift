@@ -13,10 +13,13 @@ struct FailureView: View {
             HStack {
                 Image(systemName: "x.circle")
                     .font(.custom("Sohne-Buch", size: 38.0))
-                Text("Objekt konnte nicht hinzugefügt werden. Objekt konnte nicht hinzugefügt werden.")
+                    .frame(width: 20.0)
+                Text("Objekt konnte nicht hinzugefügt werden.")
                     .multilineTextAlignment(.leading)
                     .font(.custom("Sohne-Buch", size: 18.0))
                     .frame(width: 300)
+                    .lineSpacing(/*@START_MENU_TOKEN@*/6.0/*@END_MENU_TOKEN@*/)
+                Spacer()
             }
             .foregroundColor(.white)
         }
