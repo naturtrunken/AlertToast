@@ -99,18 +99,16 @@ public struct AlertToast: View{
     public enum DisplayMode: Equatable{
         
         ///Present at the center of the screen
-        case alert
+        case centerAlert
         
         ///Drop from the top of the screen
-        case hud
+        case topAlert
         
-        ///Banner from the bottom of the view
-        case banner(_ transition: BannerAnimation)
     }
     
     /// Determine what the alert will display
     public enum AlertType: Equatable{
-        
+        /*
         ///Animated checkmark
         case complete(_ color: Color)
         
@@ -125,12 +123,9 @@ public struct AlertToast: View{
         
         ///Loading indicator (Circular)
         case loading
-        
+        */
         ///Only text alert
-        case regular
-        
-        // addo
-        case addoFailure
+        case error
     }
     
     /// Customize Alert Appearance
@@ -140,14 +135,13 @@ public struct AlertToast: View{
                    titleColor: Color? = nil,
                    subTitleColor: Color? = nil,
                    titleFont: Font? = nil,
-                   subTitleFont: Font? = nil,
-                   additionalTopMargin: CGFloat? = nil
+                   subTitleFont: Font? = nil
         )
         
         ///Get background color
         var backgroundColor: Color? {
             switch self{
-            case .style(backgroundColor: let color, _, _, _, _, _):
+            case .style(backgroundColor: let color, _, _, _, _):
                 return color
             }
         }
@@ -155,7 +149,7 @@ public struct AlertToast: View{
         /// Get title color
         var titleColor: Color? {
             switch self{
-            case .style(_,let color, _,_,_, _):
+            case .style(_,let color, _,_,_):
                 return color
             }
         }
@@ -163,7 +157,7 @@ public struct AlertToast: View{
         /// Get subTitle color
         var subtitleColor: Color? {
             switch self{
-            case .style(_,_, let color, _,_, _):
+            case .style(_,_, let color, _,_):
                 return color
             }
         }
@@ -171,7 +165,7 @@ public struct AlertToast: View{
         /// Get title font
         var titleFont: Font? {
             switch self {
-            case .style(_, _, _, titleFont: let font, _, _):
+            case .style(_, _, _, titleFont: let font, _):
                 return font
             }
         }
@@ -179,25 +173,18 @@ public struct AlertToast: View{
         /// Get subTitle font
         var subTitleFont: Font? {
             switch self {
-            case .style(_, _, _, _, subTitleFont: let font, _):
+            case .style(_, _, _, _, subTitleFont: let font):
                 return font
             }
         }
         
-        /// Get additional Top margin value
-        var additionalTopMargin: CGFloat? {
-            switch self {
-            case .style(_, _, _, _, _, additionalTopMargin: let margin):
-                return margin
-            }
-        }
     }
     
     ///The display mode
     /// - `alert`
     /// - `hud`
     /// - `banner`
-    public var displayMode: DisplayMode = .alert
+    public var displayMode: DisplayMode = .topAlert
     
     ///What the alert would show
     ///`complete`, `error`, `systemImage`, `image`, `loading`, `regular`
@@ -213,7 +200,7 @@ public struct AlertToast: View{
     public var style: AlertStyle? = nil
     
     ///Full init
-    public init(displayMode: DisplayMode = .alert,
+    public init(displayMode: DisplayMode = .topAlert,
                 type: AlertType,
                 title: String? = nil,
                 subTitle: String? = nil,
@@ -236,130 +223,27 @@ public struct AlertToast: View{
         self.title = title
     }
     
-    ///Banner from the bottom of the view
-    public var banner: some View{
-        VStack{
-            Spacer()
-            
-            //Banner view starts here
-            VStack(alignment: .leading, spacing: 10){
-                HStack{
-                    switch type{
-                    case .complete(let color):
-                        Image(systemName: "checkmark")
-                            .foregroundColor(color)
-                    case .error(let color):
-                        Image(systemName: "xmark")
-                            .foregroundColor(color)
-                    case .systemImage(let name, let color):
-                        Image(systemName: name)
-                            .foregroundColor(color)
-                    case .image(let name, let color):
-                        Image(name)
-                            .foregroundColor(color)
-                    case .loading:
-                        ActivityIndicator()
-                    case .regular:
-                        EmptyView()
-                    case .addoFailure:
-                        EmptyView()
-                    }
-                    
-                    Text(LocalizedStringKey(title ?? ""))
-                        .font(style?.titleFont ?? Font.headline.bold())
-                }
-                
-                if subTitle != nil{
-                    Text(LocalizedStringKey(subTitle!))
-                        .font(style?.subTitleFont ?? Font.subheadline)
-                }
-            }
-            .fixedSize(horizontal: true, vertical: false)
-            .multilineTextAlignment(.leading)
-            .textColor(style?.titleColor ?? nil)
-            .padding()
-            .frame(maxWidth: 400, alignment: .leading)
-            .alertBackground(style?.backgroundColor ?? nil)
-            .cornerRadius(10)
-            .padding([.horizontal, .bottom])
-        }
+
+    public var topAlertView: some View{
+        FailureView()
+        /*
+        switch AlertType {
+        case .error:
+            FailureView()
+        }*/
     }
     
-    ///HUD View
-    public var hud: some View{
-        Group{
-            HStack(spacing: 16){
-                
-                switch type{
-                case .complete(let color):
-                    Image(systemName: "checkmark")
-                        .hudModifier()
-                        .foregroundColor(color)
-                case .error(let color):
-                    Image(systemName: "xmark")
-                        .hudModifier()
-                        .foregroundColor(color)
-                case .systemImage(let name, let color):
-                    Image(systemName: name)
-                        .hudModifier()
-                        .foregroundColor(color)
-                case .image(let name, let color):
-                    Image(name)
-                        .hudModifier()
-                        .foregroundColor(color)
-                case .loading:
-                    ActivityIndicator()
-                case .regular:
-                    EmptyView()
-                case .addoFailure:
-                    EmptyView()
-                }
-                
-                if title != nil || subTitle != nil{
-                    VStack(alignment: type == .regular ? .center : .leading, spacing: 2){
-                        if title != nil{
-                            Text(LocalizedStringKey(title ?? ""))
-                                .font(style?.titleFont ?? Font.body.bold())
-                                .multilineTextAlignment(.center)
-                                .textColor(style?.titleColor ?? nil)
-                        }
-                        if subTitle != nil{
-                            Text(LocalizedStringKey(subTitle ?? ""))
-                                .font(style?.subTitleFont ?? Font.footnote)
-                                .opacity(0.7)
-                                .multilineTextAlignment(.center)
-                                .textColor(style?.subtitleColor ?? nil)
-                        }
-                    }
-                }
-            }
-            .fixedSize(horizontal: true, vertical: false)
-            .padding(.horizontal, 24)
-            .padding(.vertical, 8 + (style?.additionalTopMargin ?? 0.0))
-            .frame(minHeight: 50)
-            .alertBackground(style?.backgroundColor ?? nil)
-            .clipShape(Capsule())
-            .overlay(Capsule().stroke(Color.gray.opacity(0.2), lineWidth: 1))
-            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 6)
-            .compositingGroup()
-        }
-        .padding(.top)
-    }
-    
-    ///Alert View
-    public var addoFailureView: some View{
+    public var centerAlertView: some View{
         FailureView()
     }
     
     ///Body init determine by `displayMode`
     public var body: some View{
         switch displayMode{
-        case .alert:
-            addoFailureView
-        case .hud:
-            hud
-        case .banner:
-            banner
+        case .centerAlert:
+            centerAlertView
+        case .topAlert:
+            topAlertView
         }
     }
 }
@@ -407,7 +291,7 @@ public struct AlertToastModifier: ViewModifier{
         if isPresenting{
             
             switch alert().displayMode{
-            case .alert:
+            case .centerAlert:
                 alert()
                     .onTapGesture {
                         onTap?()
@@ -423,7 +307,7 @@ public struct AlertToastModifier: ViewModifier{
                         completion?()
                     })
                     .transition(AnyTransition.scale(scale: 0.8).combined(with: .opacity))
-            case .hud:
+            case .topAlert:
                 alert()
                     .overlay(
                         GeometryReader{ geo -> AnyView in
@@ -453,22 +337,6 @@ public struct AlertToastModifier: ViewModifier{
                         completion?()
                     })
                     .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
-            case .banner:
-                alert()
-                    .onTapGesture {
-                        onTap?()
-                        if tapToDismiss{
-                            withAnimation(Animation.spring()){
-                                self.workItem?.cancel()
-                                isPresenting = false
-                                self.workItem = nil
-                            }
-                        }
-                    }
-                    .onDisappear(perform: {
-                        completion?()
-                    })
-                    .transition(alert().displayMode == .banner(.slide) ? AnyTransition.slide.combined(with: .opacity) : AnyTransition.move(edge: .bottom))
             }
             
         }
@@ -477,20 +345,7 @@ public struct AlertToastModifier: ViewModifier{
     @ViewBuilder
     public func body(content: Content) -> some View {
         switch alert().displayMode{
-        case .banner:
-            content
-                .overlay(ZStack{
-                    main()
-                        .offset(y: offsetY)
-                }
-                            .animation(Animation.spring(), value: isPresenting)
-                )
-                .valueChanged(value: isPresenting, onChange: { (presented) in
-                    if presented{
-                        onAppearAction()
-                    }
-                })
-        case .hud:
+        case .topAlert:
             content
                 .overlay(
                     GeometryReader{ geo -> AnyView in
@@ -517,7 +372,7 @@ public struct AlertToastModifier: ViewModifier{
                         onAppearAction()
                     }
                 })
-        case .alert:
+        case .centerAlert:
             content
                 .overlay(ZStack{
                     main()
@@ -539,12 +394,12 @@ public struct AlertToastModifier: ViewModifier{
         guard workItem == nil else {
             return
         }
-        
+        /*
         if alert().type == .loading{
             duration = 0
             tapToDismiss = false
         }
-        
+        */
         if duration > 0{
             workItem?.cancel()
             
