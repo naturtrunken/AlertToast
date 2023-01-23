@@ -236,7 +236,7 @@ public struct AlertToastModifier: ViewModifier{
     @Binding var isPresenting: Bool
     
     ///Duration time to display the alert
-    @State var duration: Double = 2
+    @State var duration: Double = 4
     
     ///Tap to dismiss alert
     @State var tapToDismiss: Bool = true
