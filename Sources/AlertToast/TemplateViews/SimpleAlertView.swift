@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SimpleAlertView: View {
     var title: String
+    var subTitle: String?
     var icon: String
     var backgroundColor: Color
     var foregroundColor: Color
@@ -23,11 +24,21 @@ struct SimpleAlertView: View {
                         .font(.custom("Sohne-Buch", size: 38.0))
                         .frame(width: 20.0)
                         .padding(.trailing)
-                    Text(title)
-                        .multilineTextAlignment(.leading)
-                        .font(.custom("Sohne-Buch", size: 18.0))
-                        .frame(width: 270)
-                        .lineSpacing(/*@START_MENU_TOKEN@*/6.0/*@END_MENU_TOKEN@*/)
+                    VStack {
+                        Text(title)
+                            .multilineTextAlignment(.leading)
+                            .font(.custom("Sohne-Buch", size: 22.0))
+                            .frame(width: 270)
+                            .lineSpacing(6.0)
+                        
+                        if (subTitle != nil) {
+                            Text(subTitle!)
+                                .multilineTextAlignment(.leading)
+                                .font(.custom("Sohne-Buch", size: 16.0))
+                                .frame(width: 270)
+                                .lineSpacing(6.0)
+                        }
+                    }
                     
                     Spacer()
                 }
@@ -49,7 +60,8 @@ struct SimpleAlertView: View {
 struct SimpleAlertView_Previews: PreviewProvider {
     static var previews: some View {
         SimpleAlertView(
-            title: "Error occured",
+            title: "An error occured",
+            subTitle: "Do nothing",
             icon: "info.circle",
             backgroundColor: Color(red: 1, green: 0.4, blue: 0.4),
             foregroundColor: .white

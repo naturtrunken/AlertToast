@@ -204,11 +204,13 @@ public struct AlertToast: View{
     ///Short init with most used parameters
     public init(displayMode: DisplayMode,
                 type: AlertType,
-                title: String? = nil){
+                title: String? = nil,
+                subTitle: String? = nil){
         
         self.displayMode = displayMode
         self.type = type
         self.title = title
+        self.subTitle = subTitle
     }
     
     ///Body init determine by `displayMode`
@@ -217,6 +219,7 @@ public struct AlertToast: View{
         case .info:
             SimpleAlertView(
                 title: title ?? "",
+                subTitle: subTitle,
                 icon: "info.circle",
                 backgroundColor: .white,
                 foregroundColor: .black
@@ -224,6 +227,7 @@ public struct AlertToast: View{
         case .loggedOut:
             SimpleAlertView(
                 title: title ?? "",
+                subTitle: subTitle,
                 icon: "info.circle",
                 backgroundColor: Color(red: 1, green: 0.66, blue: 0.15),
                 foregroundColor: .black
@@ -231,6 +235,7 @@ public struct AlertToast: View{
         case .error:
             SimpleAlertView(
                 title: title ?? "",
+                subTitle: subTitle,
                 icon: "x.circle",
                 backgroundColor: Color(red: 1, green: 0.4, blue: 0.4),
                 foregroundColor: .white
