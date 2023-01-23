@@ -42,7 +42,7 @@ struct SimpleAlertView: View {
             .cornerRadius(28.0)
             .shadow(color: Color.black.opacity(0.25), radius: 5, x: 0, y: 10)
         }
-        .padding(.top, 100)
+        .padding(.top, 60)
     }
 }
 
