@@ -110,6 +110,9 @@ public struct AlertToast: View{
 
         ///Red
         case error
+        
+        ///Orange
+        case loggedOut
 
     }
     
@@ -216,6 +219,13 @@ public struct AlertToast: View{
                 title: title ?? "",
                 icon: "info.circle",
                 backgroundColor: .white,
+                foregroundColor: .black
+            )
+        case .loggedOut:
+            SimpleAlertView(
+                title: title ?? "",
+                icon: "info.circle",
+                backgroundColor: Color(red: 1, green: 0.66, blue: 0.15),
                 foregroundColor: .black
             )
         case .error:
