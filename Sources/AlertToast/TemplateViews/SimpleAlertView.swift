@@ -2,22 +2,27 @@
 //  SwiftUIView.swift
 //  
 //
-//  Created by Andreas Marc Klingler on 20.01.23.
+//  Created by Andreas Marc Klingler on 23.01.23.
 //
 
 import SwiftUI
 
-struct FailureView: View {
+struct SimpleAlertView: View {
+    var title: String
+    var icon: String
+    var backgroundColor: Color
+    var foregroundColor: Color
+    
     var body: some View {
         VStack {
             HStack {
                 Spacer()
                 
-                Image(systemName: "x.circle")
+                Image(systemName: icon)
                     .font(.custom("Sohne-Buch", size: 38.0))
                     .frame(width: 20.0)
                     .padding(.trailing)
-                Text("Objekt konnte nicht hinzugefügt werden.")
+                Text(title)
                     .multilineTextAlignment(.leading)
                     .font(.custom("Sohne-Buch", size: 18.0))
                     .frame(width: 270)
@@ -25,12 +30,12 @@ struct FailureView: View {
                 
                 Spacer()
             }
-            .foregroundColor(.white)
+            .foregroundColor(foregroundColor)
             .padding()
         }
         .frame(minHeight: 50)
         .fixedSize(horizontal: true, vertical: false)
-        .alertBackground(Color(red: 1, green: 0.4, blue: 0.4))
+        .alertBackground(backgroundColor)
         .clipShape(Rectangle())
         .overlay(Rectangle().stroke(Color.gray.opacity(0.2), lineWidth: 1))
         .cornerRadius(28.0)
@@ -38,8 +43,13 @@ struct FailureView: View {
     }
 }
 
-struct FailureView_Previews: PreviewProvider {
+struct SimpleAlertView_Previews: PreviewProvider {
     static var previews: some View {
-        FailureView()
+        SimpleAlertView(
+            title: "Error occured",
+            icon: "info.circle",
+            backgroundColor: Color(red: 1, green: 0.4, blue: 0.4),
+            foregroundColor: .white
+        )
     }
 }

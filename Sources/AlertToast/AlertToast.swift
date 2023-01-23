@@ -212,9 +212,19 @@ public struct AlertToast: View{
     public var body: some View{
         switch type {
         case .info:
-            InfoView()
+            SimpleAlertView(
+                title: title ?? "",
+                icon: "info.circle",
+                backgroundColor: .white,
+                foregroundColor: .black
+            )
         case .error:
-            FailureView()
+            SimpleAlertView(
+                title: title ?? "",
+                icon: "x.circle",
+                backgroundColor: Color(red: 1, green: 0.4, blue: 0.4),
+                foregroundColor: .white
+            )
         }
     }
 }
