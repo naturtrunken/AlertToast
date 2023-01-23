@@ -15,7 +15,7 @@ struct FailureView: View {
                     .font(.custom("Sohne-Buch", size: 38.0))
                 Text("Objekt konnte nicht hinzugefügt werden. Objekt konnte nicht hinzugefügt werden.")
                     .multilineTextAlignment(.leading)
-                    .font(.custom("Sohne-Dreiviertelfett", size: 20.0))
+                    .font(.custom("Sohne-Buch", size: 18.0))
                     .frame(width: 300)
             }
             .foregroundColor(.white)
