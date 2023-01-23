@@ -130,7 +130,7 @@ public struct AlertToast: View{
         case regular
         
         // addo
-        case failure
+        case addoFailure
     }
     
     /// Customize Alert Appearance
@@ -261,7 +261,7 @@ public struct AlertToast: View{
                         ActivityIndicator()
                     case .regular:
                         EmptyView()
-                    case .failure:
+                    case .addoFailure:
                         EmptyView()
                     }
                     
@@ -311,7 +311,7 @@ public struct AlertToast: View{
                     ActivityIndicator()
                 case .regular:
                     EmptyView()
-                case .failure:
+                case .addoFailure:
                     EmptyView()
                 }
                 
@@ -347,89 +347,15 @@ public struct AlertToast: View{
     }
     
     ///Alert View
-    public var alert: some View{
-        
-        /*
-        VStack {
-            HStack {
-                Image(systemName: "x.circle")
-                Text(title ?? "")
-            }
-            .foregroundColor(.white)
-        }
-        .padding()
-        .frame(minHeight: 50)
-        .alertBackground(.red)
-        .cornerRadius(10)
-*/
+    public var addoFailureView: some View{
         FailureView()
-        
-        /*
-        VStack{
-            switch type{
-            case .complete(let color):
-                Spacer()
-                AnimatedCheckmark(color: color)
-                Spacer()
-            case .error(let color):
-                Spacer()
-                AnimatedXmark(color: color)
-                Spacer()
-            case .systemImage(let name, let color):
-                Spacer()
-                Image(systemName: name)
-                    .renderingMode(.template)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .scaledToFit()
-                    .foregroundColor(color)
-                    .padding(.bottom)
-                Spacer()
-            case .image(let name, let color):
-                Spacer()
-                Image(name)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .scaledToFit()
-                    .foregroundColor(color)
-                    .padding(.bottom)
-                Spacer()
-            case .loading:
-                ActivityIndicator()
-            case .regular:
-                EmptyView()
-            case .failure:
-                EmptyView()
-            }
-            
-            VStack(spacing: type == .regular ? 8 : 2){
-                if title != nil{
-                    Text(LocalizedStringKey(title ?? ""))
-                        .font(style?.titleFont ?? Font.body.bold())
-                        .multilineTextAlignment(.center)
-                        .textColor(style?.titleColor ?? nil)
-                }
-                if subTitle != nil{
-                    Text(LocalizedStringKey(subTitle ?? ""))
-                        .font(style?.subTitleFont ?? Font.footnote)
-                        .opacity(0.7)
-                        .multilineTextAlignment(.center)
-                        .textColor(style?.subtitleColor ?? nil)
-                }
-            }
-        }
-        .padding()
-        .withFrame(type != .regular && type != .loading)
-        .alertBackground(style?.backgroundColor ?? nil)
-        .cornerRadius(10)
-        */
     }
     
     ///Body init determine by `displayMode`
     public var body: some View{
         switch displayMode{
         case .alert:
-            alert
+            addoFailureView
         case .hud:
             hud
         case .banner:

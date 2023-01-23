@@ -21,7 +21,6 @@ struct FailureView: View {
                     .multilineTextAlignment(.leading)
                     .font(.custom("Sohne-Buch", size: 18.0))
                     .frame(width: 270)
-                   // .fixedSize(horizontal: true, vertical: false)
                     .lineSpacing(/*@START_MENU_TOKEN@*/6.0/*@END_MENU_TOKEN@*/)
                 
                 Spacer()
@@ -35,7 +34,7 @@ struct FailureView: View {
         .clipShape(Rectangle())
         .overlay(Rectangle().stroke(Color.gray.opacity(0.2), lineWidth: 1))
         .cornerRadius(28.0)
-        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 6)
+        .shadow(color: Color.black.opacity(0.25), radius: 5, x: 0, y: 10)
     }
 }
 
