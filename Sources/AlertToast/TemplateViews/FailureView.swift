@@ -12,7 +12,7 @@ struct FailureView: View {
         VStack {
             HStack {
                 Image(systemName: "x.circle")
-                    .font(.custom("Sohne-Dreiviertelfett", size: 38.0))
+                    .font(.custom("Sohne-Buch", size: 38.0))
                 Text("Objekt konnte nicht hinzugefügt werden. Objekt konnte nicht hinzugefügt werden.")
                     .multilineTextAlignment(.leading)
                     .font(.custom("Sohne-Dreiviertelfett", size: 20.0))
