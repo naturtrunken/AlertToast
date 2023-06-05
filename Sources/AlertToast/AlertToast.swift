@@ -111,6 +111,9 @@ public struct AlertToast: View{
         ///Red
         case error
         
+        /// Yellow
+        case warning
+        
         ///Orange
         case loggedOut
 
@@ -222,6 +225,14 @@ public struct AlertToast: View{
                 subTitle: subTitle,
                 icon: "info.circle",
                 backgroundColor: .white,
+                foregroundColor: .black
+            )
+        case .warning:
+            SimpleAlertView(
+                title: title ?? "",
+                subTitle: subTitle,
+                icon: "exclamationmark.circle",
+                backgroundColor: Color(red: 1, green: 0.66, blue: 0.15),
                 foregroundColor: .black
             )
         case .loggedOut:
