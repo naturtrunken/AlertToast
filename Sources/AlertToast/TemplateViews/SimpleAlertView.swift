@@ -50,7 +50,7 @@ struct SimpleAlertView: View {
             .alertBackground(backgroundColor)
             .clipShape(Rectangle())
             .overlay(Rectangle().stroke(Color.gray.opacity(0.2), lineWidth: 1))
-            .cornerRadius(28.0)
+            .cornerRadius(8.0)
             .shadow(color: Color.black.opacity(0.25), radius: 5, x: 0, y: 10)
         }
         .padding(.top, 60)
