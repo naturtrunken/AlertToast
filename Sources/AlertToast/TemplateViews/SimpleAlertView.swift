@@ -16,36 +16,35 @@ struct SimpleAlertView: View {
     
     var body: some View {
         
-        VStack {
-            HStack {
+        VStack(alignment: .leading) {
+            HStack(alignment: .top) {
                 VStack {
                     Image(systemName: icon)
                         .font(.custom("Sohne-Buch", size: 32.0))
-                       // .padding(.horizontal)
                   //  Spacer()
                 }
+                .padding(.trailing, 10)
                 VStack {
                     HStack {
                         Text(title)
                             .multilineTextAlignment(.leading)
-                            .font(.custom("Sohne-Buch", size: 18.0))
+                            .font(.custom("Sohne-Buch", size: 22.0))
                         Spacer()
                     }
                     HStack {
                         if (subTitle != nil) {
                             Text(subTitle!)
                                 .multilineTextAlignment(.leading)
-                                .font(.custom("Sohne-Buch", size: 14.0))
+                                .font(.custom("Sohne-Buch", size: 18.0))
                                 .lineSpacing(7.0)
                                 .padding(.top, 10)
                         }
                         Spacer()
                     }
-                    //Spacer()
                 }
-                .padding()
 
             }
+            .padding()
             .alertBackground(backgroundColor)
             .clipShape(Rectangle())
             .overlay(Rectangle().stroke(Color.gray.opacity(0.2), lineWidth: 0))
@@ -55,64 +54,6 @@ struct SimpleAlertView: View {
             Spacer()
         }
         .padding()
-
-        /*
-        Group {
-            HStack {
-                
-                
-                
-                
-                
-               // HStack {
-                    //Spacer()
-                    
-                    Image(systemName: icon)
-                        .font(.custom("Sohne-Buch", size: 32.0))
-                       // .frame(width: 20.0)
-                        .padding(.leading)
-                    VStack {
-                        HStack {
-                            Text(title)
-                                .multilineTextAlignment(.leading)
-                                .font(.custom("Sohne-Buch", size: 18.0))
-                            //    .frame(width: 270)
-                            Spacer()
-                        }
-                        
-                        HStack {
-                            if (subTitle != nil) {
-                                Text(subTitle!)
-                                    .multilineTextAlignment(.leading)
-                                    .font(.custom("Sohne-Buch", size: 14.0))
-                                  //  .frame(width: 270)
-                                    .lineSpacing(7.0)
-                                    .padding(.top, 10)
-                            }
-                            Spacer()
-                        }
-                    }
-                    .padding()
-                    
-                    Spacer()
-              //  }
-              //  .foregroundColor(foregroundColor)
-              //  .padding()
-                
-                
-                
-                
-            }
-           // .frame(minHeight: 50)
-           // .fixedSize(horizontal: true, vertical: false)
-            .alertBackground(backgroundColor)
-            .clipShape(Rectangle())
-            .overlay(Rectangle().stroke(Color.gray.opacity(0.2), lineWidth: 1))
-            .cornerRadius(8.0)
-            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
-        }
-        .padding(20)
-         */
     }
 }
 
