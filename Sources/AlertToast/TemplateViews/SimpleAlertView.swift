@@ -24,14 +24,15 @@ struct SimpleAlertView: View {
                 }
                 .padding(.trailing, 10)
                 
-                VStack(alignment: .center) {
-                    HStack(alignment: .center) {
-                        Spacer()
+                VStack(alignment: .leading) {
+                    HStack(alignment: .top) {
+                        //Spacer()
                         Text(title)
                             .multilineTextAlignment(.leading)
                             .font(.custom("Sohne-Buch", size: 22.0))
                         Spacer()
                     }
+                    /*
                     HStack {
                         if (subTitle != nil) {
                             Text(subTitle!)
@@ -42,15 +43,18 @@ struct SimpleAlertView: View {
                         }
                         Spacer()
                     }
+                    */
                 }
+                .padding(.top, 5)
 
             }
-            .padding()
+            .padding([.horizontal, .top])
+            .padding([.bottom], 20)
             .alertBackground(backgroundColor)
             .clipShape(Rectangle())
             .overlay(Rectangle().stroke(Color.gray.opacity(0.2), lineWidth: 0))
             .cornerRadius(8.0)
-            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
+            .shadow(color: Color.black.opacity(0.25), radius: 8, x: 4, y: 8)
 
             Spacer()
         }
@@ -61,10 +65,10 @@ struct SimpleAlertView: View {
 struct SimpleAlertView_Previews: PreviewProvider {
     static var previews: some View {
         SimpleAlertView(
-            title: "An error ",
+            title: "Kollektion konnte nicht angelegt werden.",
             subTitle: "",
             icon: "x.circle.fill",
-            backgroundColor: Color(red: 1, green: 0.4, blue: 0.4),
+            backgroundColor: Color(red: 1, green: 146/255, blue: 147/255),
             foregroundColor: .white
         )
     }
