@@ -224,7 +224,7 @@ public struct AlertToast: View{
                 title: title ?? "",
                 subTitle: subTitle,
                 icon: "info.circle",
-                backgroundColor: .white,
+                backgroundColor: Color(red: 173/255, green: 226/255, blue: 1),
                 foregroundColor: .black
             )
         case .warning:
@@ -232,7 +232,7 @@ public struct AlertToast: View{
                 title: title ?? "",
                 subTitle: subTitle,
                 icon: "exclamationmark.circle",
-                backgroundColor: Color(red: 1, green: 0.66, blue: 0.15),
+                backgroundColor: Color(red: 1, green: 250/255, blue: 173/255),
                 foregroundColor: .black
             )
         case .loggedOut:
@@ -247,8 +247,8 @@ public struct AlertToast: View{
             SimpleAlertView(
                 title: title ?? "",
                 subTitle: subTitle,
-                icon: "x.circle",
-                backgroundColor: Color(red: 1, green: 0.4, blue: 0.4),
+                icon: "x.circle.fill",
+                backgroundColor: Color(red: 1, green: 146/255, blue: 147/255),
                 foregroundColor: .white
             )
         }
