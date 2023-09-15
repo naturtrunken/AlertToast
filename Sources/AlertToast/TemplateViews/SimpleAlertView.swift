@@ -21,11 +21,12 @@ struct SimpleAlertView: View {
                 VStack {
                     Image(systemName: icon)
                         .font(.custom("Sohne-Buch", size: 32.0))
-                  //  Spacer()
                 }
                 .padding(.trailing, 10)
-                VStack {
-                    HStack {
+                
+                VStack(alignment: .center) {
+                    HStack(alignment: .center) {
+                        Spacer()
                         Text(title)
                             .multilineTextAlignment(.leading)
                             .font(.custom("Sohne-Buch", size: 22.0))
@@ -60,8 +61,8 @@ struct SimpleAlertView: View {
 struct SimpleAlertView_Previews: PreviewProvider {
     static var previews: some View {
         SimpleAlertView(
-            title: "An error occured An error occured An error occured",
-            subTitle: "Do nothing",
+            title: "An error ",
+            subTitle: "",
             icon: "x.circle.fill",
             backgroundColor: Color(red: 1, green: 0.4, blue: 0.4),
             foregroundColor: .white
