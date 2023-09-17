@@ -49,7 +49,6 @@ struct SimpleAlertView: View {
 
             }
             //.frame(minHeight: 50)
-            .fixedSize(horizontal: false, vertical: true)
             .padding([.horizontal, .top])
             .padding([.bottom], 20)
             .alertBackground(backgroundColor)
@@ -58,7 +57,7 @@ struct SimpleAlertView: View {
             .cornerRadius(8.0)
             .shadow(color: Color.black.opacity(0.25), radius: 8, x: 4, y: 8)
 
-            Spacer()
+           // Spacer()
         }
         .padding()
     }
