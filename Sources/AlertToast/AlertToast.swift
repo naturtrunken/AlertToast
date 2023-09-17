@@ -224,7 +224,7 @@ public struct AlertToast: View{
                 title: title ?? "",
                 subTitle: subTitle,
                 icon: "info.circle",
-                backgroundColor: Color(red: 173/255, green: 226/255, blue: 1),
+                backgroundColor: Color(red: 243/255, green: 243/255, blue: 244/255),
                 foregroundColor: .black
             )
         case .warning:
