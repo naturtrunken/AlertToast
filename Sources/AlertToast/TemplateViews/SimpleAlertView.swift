@@ -56,10 +56,8 @@ struct SimpleAlertView: View {
             .overlay(Rectangle().stroke(Color.gray.opacity(0.2), lineWidth: 0))
             .cornerRadius(8.0)
             .shadow(color: Color.black.opacity(0.25), radius: 8, x: 4, y: 8)
-
-           // Spacer()
         }
-        .padding()
+        .padding(.top, 60)
     }
 }
 
