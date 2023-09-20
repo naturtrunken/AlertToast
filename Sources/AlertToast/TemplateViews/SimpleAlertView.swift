@@ -56,8 +56,8 @@ struct SimpleAlertView: View {
             .cornerRadius(8.0)
             .shadow(color: Color.black.opacity(0.25), radius: 8, x: 4, y: 8)
         }
-        .padding()
-        .padding(.top, 20)
+        .padding(.vertical, 30)
+        .padding(.horizontal, UIScreen.main.bounds.width > 699 ? (UIScreen.main.bounds.width / 8) : 30)
     }
 }
 
