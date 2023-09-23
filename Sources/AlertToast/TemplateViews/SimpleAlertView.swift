@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SimpleAlertView: View {
     var title: String
-    var subTitle: String?
     var icon: String
     var backgroundColor: Color
     var foregroundColor: Color
@@ -32,18 +31,6 @@ struct SimpleAlertView: View {
                             .font(.custom("Sohne-Buch", size: 22.0))
                         Spacer()
                     }
-                    /*
-                    HStack {
-                        if (subTitle != nil) {
-                            Text(subTitle!)
-                                .multilineTextAlignment(.leading)
-                                .font(.custom("Sohne-Buch", size: 18.0))
-                                .lineSpacing(7.0)
-                                .padding(.top, 10)
-                        }
-                        Spacer()
-                    }
-                    */
                 }
                 .padding(.top, 5)
 
@@ -65,7 +52,6 @@ struct SimpleAlertView_Previews: PreviewProvider {
     static var previews: some View {
         SimpleAlertView(
             title: "Kollektion konnte nicht angelegt werden.",
-            subTitle: "",
             icon: "x.circle.fill",
             backgroundColor: Color(red: 1, green: 146/255, blue: 147/255),
             foregroundColor: .white

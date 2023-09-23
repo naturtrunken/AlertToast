@@ -90,6 +90,7 @@ fileprivate struct AnimatedXmark: View {
 
 @available(iOS 13, macOS 11, *)
 public struct AlertToast: View{
+    @Environment(\.colorScheme) var colorScheme
     
     public enum BannerAnimation{
         case slide, pop
@@ -222,7 +223,6 @@ public struct AlertToast: View{
         case .info:
             SimpleAlertView(
                 title: title ?? "",
-                subTitle: subTitle,
                 icon: "info.circle",
                 backgroundColor: Color(red: 243/255, green: 243/255, blue: 244/255),
                 foregroundColor: .black
@@ -230,7 +230,6 @@ public struct AlertToast: View{
         case .warning:
             SimpleAlertView(
                 title: title ?? "",
-                subTitle: subTitle,
                 icon: "exclamationmark.circle",
                 backgroundColor: Color(red: 1, green: 250/255, blue: 173/255),
                 foregroundColor: .black
@@ -238,7 +237,6 @@ public struct AlertToast: View{
         case .loggedOut:
             SimpleAlertView(
                 title: title ?? "",
-                subTitle: subTitle,
                 icon: "info.circle",
                 backgroundColor: Color(red: 1, green: 0.66, blue: 0.15),
                 foregroundColor: .black
@@ -246,10 +244,9 @@ public struct AlertToast: View{
         case .error:
             SimpleAlertView(
                 title: title ?? "",
-                subTitle: subTitle,
                 icon: "x.circle.fill",
-                backgroundColor: Color(red: 1, green: 146/255, blue: 147/255),
-                foregroundColor: .white
+                backgroundColor: colorScheme == .light ? Color(red: 1, green: 146/255, blue: 147/255) : Color(red: 188/255, green: 0, blue: 0),
+                foregroundColor: colorScheme == .light ? .black : .white
             )
         }
     }
